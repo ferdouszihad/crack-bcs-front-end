@@ -3,6 +3,7 @@ import Blog from "../components/Blog/Blog";
 import Checkout from "../components/Checkout/Checkout";
 import CourseDetail from "../components/CourseDetail/CourseDetail";
 import Courses from "../components/Courses/Courses";
+import Error404 from "../components/Error404/Error404";
 import FAQ from "../components/FAQ/FAQ";
 import Login from "../components/Login/Login";
 import Register from "../components/Register/Register";
@@ -69,6 +70,10 @@ const navRouter = createBrowserRouter([
       {
         path: "register",
         element: <Register></Register>,
+      },
+      {
+        path: "*",
+        element: <Error404></Error404>,
       },
     ],
   },

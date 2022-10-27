@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -6,6 +7,7 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/UserContext";
 
 const Register = () => {
+  const [error, setError] = useState("");
   const { createUser, setUser, googleSignIn, githubSignIn } =
     useContext(AuthContext);
   const navigate = useNavigate();
@@ -42,11 +44,15 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
 
+    if (password.length <= 6) {
+      setError("Make the password minimum 6 characters long");
+    }
+
     createUser(email, password)
       .then((res) => {
         alert("Sign-up Successful");
         const user = res.user;
-        user.displayName = name;
+
         setUser(user);
         form.reset();
         navigate("/courses");
@@ -73,6 +79,7 @@ const Register = () => {
                 type="name"
                 name="name"
                 placeholder="Enter Full Name"
+                required
               />
             </Form.Group>
 
@@ -82,6 +89,7 @@ const Register = () => {
                 type="email"
                 name="email"
                 placeholder="Enter email"
+                required
               />
             </Form.Group>
 
@@ -91,6 +99,17 @@ const Register = () => {
                 type="password"
                 name="password"
                 placeholder="Password"
+                required
+              />
+              <small className="text-danger">{error}</small>
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label>Your Photo URL</Form.Label>
+              <Form.Control
+                type="text"
+                name="name"
+                placeholder="any photo url"
               />
             </Form.Group>
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/UserContext";
 
 const Login = () => {
+  const [error, setError] = useState("");
   const { signIn, setUser, googleSignIn, githubSignIn } =
     useContext(AuthContext);
 
@@ -53,6 +54,7 @@ const Login = () => {
       })
       .catch((error) => {
         console.error(error);
+        setError(error.code);
         alert("Sign-in Failed");
       });
   };
@@ -73,6 +75,7 @@ const Login = () => {
                 type="email"
                 name="email"
                 placeholder="Enter email"
+                required
               />
             </Form.Group>
 
@@ -82,7 +85,9 @@ const Login = () => {
                 type="password"
                 name="password"
                 placeholder="Password"
+                required
               />
+              <small className="error text-danger">{error}</small>
             </Form.Group>
             <Button variant="primary" type="submit" className="d-block w-100">
               Get me in

@@ -4,7 +4,7 @@ import navRouter from "./routes/Navroutes";
 
 function App() {
   return (
-    <div>
+    <div className="">
       <RouterProvider router={navRouter}></RouterProvider>
     </div>
   );
