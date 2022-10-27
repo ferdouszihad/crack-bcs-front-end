@@ -5,7 +5,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
 import logo from "../../images/logo.png";
-import { BeakerIcon, SunIcon, MoonIcon } from "@heroicons/react/24/solid";
+import { SunIcon, MoonIcon } from "@heroicons/react/24/solid";
 
 const Header = () => {
   const [theme, setTheme] = useState(true);
@@ -16,8 +16,11 @@ const Header = () => {
     <header>
       <Navbar bg="primary" variant="dark">
         <Container>
-          <Navbar.Brand className="d-flex gap-3 align-items-center">
-            <Link to="/" className="text-light text-decoration-none">
+          <Navbar.Brand>
+            <Link
+              to="/"
+              className=" d-flex gap-3 align-items-center text-light text-decoration-none"
+            >
               <img src={logo} alt="" width="60px" />
               <h4>Crack BCS</h4>
             </Link>
@@ -48,7 +51,7 @@ const Header = () => {
             onClick={handleTheme}
             className={`theme-icon text-white mx-3 ${
               theme ? "bg-warning" : "bg-dark"
-            } p-1 rounded-circle`}
+            } p-2 rounded-circle`}
           >
             {theme ? (
               <SunIcon style={{ width: "26px" }}></SunIcon>

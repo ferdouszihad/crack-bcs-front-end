@@ -21,6 +21,10 @@ const navRouter = createBrowserRouter([
       },
       {
         path: "courses",
+        loader: async () => {
+          const data = await fetch("http://localhost:4000/courses");
+          return data;
+        },
         element: <Courses></Courses>,
       },
       {
