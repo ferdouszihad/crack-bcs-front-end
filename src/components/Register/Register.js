@@ -2,18 +2,20 @@ import React from "react";
 import { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/UserContext";
 
 const Register = () => {
   const { createUser, setUser, googleSignIn, githubSignIn } =
     useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then((res) => {
         const user = res.user;
         setUser(user);
+        navigate("/courses");
       })
       .catch((error) => {
         alert("Cant sign in");
@@ -25,6 +27,7 @@ const Register = () => {
       .then((res) => {
         const user = res.user;
         setUser(user);
+        navigate("/courses");
       })
       .catch((error) => {
         alert("Cant sign in");
@@ -46,6 +49,7 @@ const Register = () => {
         user.displayName = name;
         setUser(user);
         form.reset();
+        navigate("/courses");
       })
       .catch((error) => {
         alert("User Sign-up Failed.  see log");

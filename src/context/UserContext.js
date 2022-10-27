@@ -17,7 +17,8 @@ export const AuthContext = createContext();
 
 const UserContext = ({ children }) => {
   const auth = getAuth(app);
-  const [user, setUser] = useState({ displayName: "Ferdous" });
+  const [user, setUser] = useState({});
+  const [loading, setLoading] = useState(true);
 
   const createUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
@@ -44,6 +45,7 @@ const UserContext = ({ children }) => {
   useEffect(() => {
     const unscubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      setLoading(false);
       console.log(currentUser);
     });
     return () => {
@@ -53,6 +55,7 @@ const UserContext = ({ children }) => {
 
   const authInfo = {
     user,
+    loading,
     createUser,
     signIn,
     setUser,

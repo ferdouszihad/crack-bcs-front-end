@@ -39,7 +39,7 @@ const Header = () => {
             {user && user.uid ? (
               <>
                 <p className="text-light m-0 fw-bold">
-                  Hello {user.displayName}
+                  Hello {user.displayName ? user.displayName : "user"}
                 </p>
               </>
             ) : (
@@ -60,9 +60,6 @@ const Header = () => {
           </div>
 
           <Nav className="text-light">
-            <Link to="/home" className="text-light mx-3 text-decoration-none">
-              HOME
-            </Link>
             <Link
               to="/courses"
               className="text-light mx-3 text-decoration-none"

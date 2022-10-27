@@ -2,18 +2,21 @@ import React from "react";
 import { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/UserContext";
 
 const Login = () => {
   const { signIn, setUser, googleSignIn, githubSignIn } =
     useContext(AuthContext);
 
+  const navigate = useNavigate();
+
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then((res) => {
         const user = res.user;
         setUser(user);
+        navigate("/courses");
       })
       .catch((error) => {
         alert("Cant sign in");
@@ -26,6 +29,7 @@ const Login = () => {
       .then((res) => {
         const user = res.user;
         setUser(user);
+        navigate("/courses");
       })
       .catch((error) => {
         alert("Cant sign in");
@@ -45,6 +49,7 @@ const Login = () => {
         alert("Successfull");
         console.log(user);
         form.reset();
+        navigate("/courses");
       })
       .catch((error) => {
         console.error(error);
