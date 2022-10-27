@@ -1,17 +1,11 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
 import "./App.css";
-import Header from "./components/Header/Header";
+import navRouter from "./routes/Navroutes";
 
 function App() {
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Header></Header>,
-    },
-  ]);
   return (
     <div className="App">
-      <RouterProvider router={router}></RouterProvider>
+      <RouterProvider router={navRouter}></RouterProvider>
     </div>
   );
 }
