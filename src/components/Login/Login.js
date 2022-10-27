@@ -1,15 +1,29 @@
 import React from "react";
+import { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/UserContext";
 
 const Login = () => {
+  const { signIn, setUser } = useContext(AuthContext);
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
+    signIn(email, password)
+      .then((res) => {
+        const user = res.user;
+        setUser(user);
+        alert("Successfull");
+        console.log(user);
+        form.reset();
+      })
+      .catch((error) => {
+        console.error(error);
+        alert("Sign-in Failed");
+      });
   };
   return (
     <div>
@@ -56,7 +70,7 @@ const Login = () => {
                 src="https://cdn3.iconfinder.com/data/icons/logos-brands-3/24/logo_brand_brands_logos_google-256.png"
                 alt=""
                 width="35px"
-                class="mx-1"
+                className="mx-1"
               />
             </button>
             <button className="btn btn-outline-secondary ">
@@ -65,7 +79,7 @@ const Login = () => {
                 src="https://cdn2.iconfinder.com/data/icons/boxicons-logos/24/bxl-github-256.png"
                 alt=""
                 width="35px"
-                class="mx-1"
+                className="mx-1"
               />
             </button>
           </div>

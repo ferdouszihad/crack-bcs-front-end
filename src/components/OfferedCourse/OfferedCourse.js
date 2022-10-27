@@ -17,7 +17,7 @@ const OfferedCourse = ({ details }) => {
           Discount price : <b className=" shadow">{discountPrice} TK</b>
         </p>
       </div>
-      <Link to={`/checkout/${id}`} class="mx-auto mb-3">
+      <Link to={`/checkout/${id}`} className="mx-auto mb-3">
         <Button variant="warning">Get Premium Access</Button>
       </Link>
     </div>

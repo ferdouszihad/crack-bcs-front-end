@@ -6,8 +6,11 @@ import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
 import logo from "../../images/logo.png";
 import { SunIcon, MoonIcon } from "@heroicons/react/24/solid";
+import { useContext } from "react";
+import { AuthContext } from "../../context/UserContext";
 
 const Header = () => {
+  const { user } = useContext(AuthContext);
   const [theme, setTheme] = useState(true);
   const handleTheme = () => {
     setTheme(!theme);
@@ -43,9 +46,13 @@ const Header = () => {
             <Link to="/blog" className=" text-light mx-3 text-decoration-none">
               blog
             </Link>
-            <Link to="/login" className=" text-light text-decoration-none">
-              Login
-            </Link>
+            {user && user.email ? (
+              <p>Hello {user.email}</p>
+            ) : (
+              <Link to="/login" className=" text-light text-decoration-none">
+                Login
+              </Link>
+            )}
           </Nav>
           <div
             onClick={handleTheme}
