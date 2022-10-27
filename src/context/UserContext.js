@@ -5,6 +5,7 @@ import {
   getAuth,
   GoogleAuthProvider,
   signInWithPopup,
+  GithubAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
@@ -27,9 +28,13 @@ const UserContext = ({ children }) => {
   };
 
   const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
 
   const googleSignIn = () => {
     return signInWithPopup(auth, googleProvider);
+  };
+  const githubSignIn = () => {
+    return signInWithPopup(auth, githubProvider);
   };
 
   const logOut = () => {
@@ -39,13 +44,22 @@ const UserContext = ({ children }) => {
   useEffect(() => {
     const unscubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      console.log(currentUser);
     });
     return () => {
       unscubscribe();
     };
   }, []);
 
-  const authInfo = { user, createUser, signIn, setUser, logOut, googleSignIn };
+  const authInfo = {
+    user,
+    createUser,
+    signIn,
+    setUser,
+    logOut,
+    googleSignIn,
+    githubSignIn,
+  };
 
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

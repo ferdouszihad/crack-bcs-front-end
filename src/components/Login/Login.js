@@ -6,10 +6,23 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/UserContext";
 
 const Login = () => {
-  const { signIn, setUser, googleSignIn } = useContext(AuthContext);
+  const { signIn, setUser, googleSignIn, githubSignIn } =
+    useContext(AuthContext);
 
   const handleGoogleSignIn = () => {
     googleSignIn()
+      .then((res) => {
+        const user = res.user;
+        setUser(user);
+      })
+      .catch((error) => {
+        alert("Cant sign in");
+        console.error(error);
+      });
+  };
+
+  const handleGithubSignIn = () => {
+    githubSignIn()
       .then((res) => {
         const user = res.user;
         setUser(user);
@@ -89,7 +102,10 @@ const Login = () => {
                 className="mx-1"
               />
             </button>
-            <button className="btn btn-outline-secondary ">
+            <button
+              onClick={handleGithubSignIn}
+              className="btn btn-outline-secondary "
+            >
               Sign-in with
               <img
                 src="https://cdn2.iconfinder.com/data/icons/boxicons-logos/24/bxl-github-256.png"

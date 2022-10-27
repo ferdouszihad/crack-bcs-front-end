@@ -36,12 +36,26 @@ const Header = () => {
             </Link>
           </Navbar.Brand>
           <div className="ms-auto">
-            {user && user.email ? (
+            {user && user.uid ? (
               <>
-                <p className="text-light m-0 fw-bold">Hello {user.email}</p>
+                <p className="text-light m-0 fw-bold">
+                  Hello {user.displayName}
+                </p>
               </>
             ) : (
               ""
+            )}
+          </div>
+          <div
+            onClick={handleTheme}
+            className={`theme-icon text-white mx-3 ${
+              theme ? "bg-warning" : "bg-dark"
+            } p-2 rounded-circle`}
+          >
+            {theme ? (
+              <SunIcon style={{ width: "26px" }}></SunIcon>
+            ) : (
+              <MoonIcon style={{ width: "26px" }}></MoonIcon>
             )}
           </div>
 
@@ -61,7 +75,7 @@ const Header = () => {
             <Link to="/blog" className=" text-light mx-3 text-decoration-none">
               blog
             </Link>
-            {user && user.email ? (
+            {user && user.uid ? (
               <>
                 <Link
                   onClick={handleLogOut}
@@ -76,16 +90,20 @@ const Header = () => {
               </Link>
             )}
           </Nav>
-          <div
-            onClick={handleTheme}
-            className={`theme-icon text-white mx-3 ${
-              theme ? "bg-warning" : "bg-dark"
-            } p-2 rounded-circle`}
-          >
-            {theme ? (
-              <SunIcon style={{ width: "26px" }}></SunIcon>
+          <div className="user-img">
+            {user ? (
+              <img
+                src={
+                  user.photoURL
+                    ? user.photoURL
+                    : "https://cdn2.iconfinder.com/data/icons/avatars-60/5985/2-Boy-256.png"
+                }
+                alt=""
+                width="50px"
+                className="ms-2 rounded-circle border border-3 border-warning"
+              />
             ) : (
-              <MoonIcon style={{ width: "26px" }}></MoonIcon>
+              ""
             )}
           </div>
         </Container>
