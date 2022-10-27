@@ -10,10 +10,17 @@ import { useContext } from "react";
 import { AuthContext } from "../../context/UserContext";
 
 const Header = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   const [theme, setTheme] = useState(true);
   const handleTheme = () => {
     setTheme(!theme);
+  };
+  const handleLogOut = () => {
+    logOut()
+      .then(alert("Log-Out Successfull"))
+      .catch((error) => {
+        alert("LogOut Unsuccessfull");
+      });
   };
   return (
     <header>
@@ -28,7 +35,15 @@ const Header = () => {
               <h4>Crack BCS</h4>
             </Link>
           </Navbar.Brand>
-          <div className="ms-auto"></div>
+          <div className="ms-auto">
+            {user && user.email ? (
+              <>
+                <p className="text-light m-0 fw-bold">Hello {user.email}</p>
+              </>
+            ) : (
+              ""
+            )}
+          </div>
 
           <Nav className="text-light">
             <Link to="/home" className="text-light mx-3 text-decoration-none">
@@ -47,7 +62,14 @@ const Header = () => {
               blog
             </Link>
             {user && user.email ? (
-              <p>Hello {user.email}</p>
+              <>
+                <Link
+                  onClick={handleLogOut}
+                  className=" text-light text-decoration-none"
+                >
+                  signOut
+                </Link>
+              </>
             ) : (
               <Link to="/login" className=" text-light text-decoration-none">
                 Login

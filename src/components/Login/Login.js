@@ -6,7 +6,20 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/UserContext";
 
 const Login = () => {
-  const { signIn, setUser } = useContext(AuthContext);
+  const { signIn, setUser, googleSignIn } = useContext(AuthContext);
+
+  const handleGoogleSignIn = () => {
+    googleSignIn()
+      .then((res) => {
+        const user = res.user;
+        setUser(user);
+      })
+      .catch((error) => {
+        alert("Cant sign in");
+        console.error(error);
+      });
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -64,7 +77,10 @@ const Login = () => {
             </Link>
           </p>
           <div className="d-flex justify-content-between">
-            <button className="btn btn-outline-primary ">
+            <button
+              onClick={handleGoogleSignIn}
+              className="btn btn-outline-primary "
+            >
               Sign-in with
               <img
                 src="https://cdn3.iconfinder.com/data/icons/logos-brands-3/24/logo_brand_brands_logos_google-256.png"
