@@ -1,10 +1,14 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
 import Course from "../Course/Course";
+import OfferedCourse from "../OfferedCourse/OfferedCourse";
 import "./Courses.css";
 
 const Courses = () => {
   const courses = useLoaderData();
+  const offeredCourses = courses.filter(
+    (course) => course.discount_status === true
+  );
 
   return (
     <div className="courses-container">
@@ -18,8 +22,14 @@ const Courses = () => {
           </div>
         </div>
       </div>
-      <div className="side-bar  my-4">
+      <div className="side-bar my-4">
         <h2 className="text-center">Todays Offer</h2>
+        <p className="text-center">
+          Get Flat <b className="text-danger">30%</b> Discount
+        </p>
+        {offeredCourses.map((oc) => (
+          <OfferedCourse key={oc.id} details={oc}></OfferedCourse>
+        ))}
       </div>
     </div>
   );
