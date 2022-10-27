@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 const CourseDetail = () => {
   const {
@@ -19,7 +19,7 @@ const CourseDetail = () => {
   return (
     <div className="container my-5 ">
       <div className="name text-center my-5">
-        <h5>Couse Name : </h5>
+        <h5>Couse Name </h5>
         <h1>{name}</h1>
       </div>
       <div className="detail-body d-flex flex-wrap flex-md-nowrap align-items-center gap-4">
@@ -46,7 +46,9 @@ const CourseDetail = () => {
             )}
           </div>
 
-          <Button variant="success">Buy Now</Button>
+          <Link to={`/checkout/${id}`} class="mx-auto mb-3">
+            <Button variant="warning">Get Premium Access</Button>
+          </Link>
         </div>
       </div>
     </div>
