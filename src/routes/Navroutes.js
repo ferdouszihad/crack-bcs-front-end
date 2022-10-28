@@ -18,7 +18,9 @@ const navRouter = createBrowserRouter([
       {
         path: "courses",
         loader: async () => {
-          const data = await fetch("http://localhost:4000/courses");
+          const data = await fetch(
+            "https://cch-skill-hub-server-techsoros.vercel.app/courses"
+          );
           return data;
         },
         element: <Courses></Courses>,
@@ -26,7 +28,9 @@ const navRouter = createBrowserRouter([
       {
         path: "/",
         loader: async () => {
-          const data = await fetch("http://localhost:4000/courses");
+          const data = await fetch(
+            "https://cch-skill-hub-server-techsoros.vercel.app/courses"
+          );
           return data;
         },
         element: <Courses></Courses>,
@@ -35,7 +39,7 @@ const navRouter = createBrowserRouter([
         path: "courses/:cId",
         loader: async ({ params }) => {
           const data = await fetch(
-            `http://localhost:4000/courses/${params.cId}`
+            `https://cch-skill-hub-server-techsoros.vercel.app/courses/${params.cId}`
           );
           return data;
         },
@@ -45,7 +49,7 @@ const navRouter = createBrowserRouter([
         path: "checkout/:cId",
         loader: async ({ params }) => {
           const data = await fetch(
-            `http://localhost:4000/courses/${params.cId}`
+            `https://cch-skill-hub-server-techsoros.vercel.app/courses/${params.cId}`
           );
           return data;
         },
