@@ -4,4 +4,13 @@
     position:relative;
 }
 
+@media screen and (max-width:768px) {
+
+   .courses-container{
+    display: grid;
+    grid-template-columns:1fr;
+    position:relative;
+} 
+}
+
 

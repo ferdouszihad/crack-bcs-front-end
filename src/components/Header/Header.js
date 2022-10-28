@@ -24,7 +24,7 @@ const Header = () => {
   };
   return (
     <header>
-      <Navbar bg="primary" variant="dark">
+      <Navbar bg="primary" variant="dark" expand="lg">
         <Container>
           <Navbar.Brand>
             <Link
@@ -35,17 +35,6 @@ const Header = () => {
               <h4>Crack BCS</h4>
             </Link>
           </Navbar.Brand>
-          <div className="ms-auto">
-            {user && user.uid ? (
-              <>
-                <p className="text-light m-0 fw-bold">
-                  Hello {user.displayName ? user.displayName : "user"}
-                </p>
-              </>
-            ) : (
-              ""
-            )}
-          </div>
           <div
             onClick={handleTheme}
             className={`theme-icon text-white mx-3 ${
@@ -59,34 +48,54 @@ const Header = () => {
             )}
           </div>
 
-          <Nav className="text-light">
-            <Link
-              to="/courses"
-              className="text-light mx-3 text-decoration-none"
-            >
-              COURSES
-            </Link>
-            <Link to="/faq" className=" text-light mx-3 text-decoration-none">
-              FAQ
-            </Link>
-            <Link to="/blog" className=" text-light mx-3 text-decoration-none">
-              blog
-            </Link>
-            {user && user.uid ? (
-              <>
-                <Link
-                  onClick={handleLogOut}
-                  className=" text-light text-decoration-none"
-                >
-                  signOut
-                </Link>
-              </>
-            ) : (
-              <Link to="/login" className=" text-light text-decoration-none">
-                Login
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+
+          <Navbar.Collapse id="basic-navbar-nav">
+            <div className="ms-auto">
+              {user && user.uid ? (
+                <>
+                  <p className="text-light m-0 fw-bold">
+                    Hello {user.displayName ? user.displayName : "user"}
+                  </p>
+                </>
+              ) : (
+                ""
+              )}
+            </div>
+
+            <Nav className="text-light">
+              <Link
+                to="/courses"
+                className="text-light mx-3 text-decoration-none"
+              >
+                COURSES
               </Link>
-            )}
-          </Nav>
+              <Link to="/faq" className=" text-light mx-3 text-decoration-none">
+                FAQ
+              </Link>
+              <Link
+                to="/blog"
+                className=" text-light mx-3 text-decoration-none"
+              >
+                blog
+              </Link>
+              {user && user.uid ? (
+                <>
+                  <Link
+                    onClick={handleLogOut}
+                    className=" text-light text-decoration-none"
+                  >
+                    signOut
+                  </Link>
+                </>
+              ) : (
+                <Link to="/login" className=" text-light text-decoration-none">
+                  Login
+                </Link>
+              )}
+            </Nav>
+          </Navbar.Collapse>
+
           <div className="user-img">
             {user ? (
               <img
