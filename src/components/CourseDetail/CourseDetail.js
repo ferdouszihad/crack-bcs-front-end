@@ -39,7 +39,7 @@ const CourseDetail = () => {
           </Pdf>
         </h1>
       </div>
-      <div className="detail-body d-flex flex-wrap flex-md-nowrap align-items-center gap-4">
+      <div className="detail-body align-items-center gap-4">
         <div className="course-img my-5">
           <img src={img} alt="" className="img-fluid" />
         </div>
