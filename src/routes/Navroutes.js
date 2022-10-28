@@ -60,11 +60,11 @@ const navRouter = createBrowserRouter([
         ),
       },
       {
-        path: "faq",
-        element: <FAQ></FAQ>,
+        path: "blog",
+        element: <Blog></Blog>,
       },
       {
-        path: "blog",
+        path: "faq",
         element: <Blog></Blog>,
       },
       {
