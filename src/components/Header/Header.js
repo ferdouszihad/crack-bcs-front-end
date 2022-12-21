@@ -36,7 +36,7 @@ const Header = () => {
               <h4>Crack BCS</h4>
             </Link>
           </Navbar.Brand>
-          <div
+          {/* <div
             onClick={handleTheme}
             className={`theme-icon text-white mx-3 ${
               theme ? "bg-warning" : "bg-dark"
@@ -47,7 +47,7 @@ const Header = () => {
             ) : (
               <MoonIcon style={{ width: "26px" }}></MoonIcon>
             )}
-          </div>
+          </div> */}
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
