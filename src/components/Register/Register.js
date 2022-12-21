@@ -3,13 +3,13 @@ import { useState } from "react";
 import { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../context/UserContext";
 
 const Register = () => {
   const [error, setError] = useState("");
-  const { createUser, setUser, googleSignIn, githubSignIn } =
+  const { createUser, setUser, googleSignIn, githubSignIn, updateUser } =
     useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -46,6 +46,7 @@ const Register = () => {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
+    console.log(name);
 
     if (password.length <= 6) {
       setError("Make the password minimum 6 characters long");
@@ -53,10 +54,14 @@ const Register = () => {
 
     createUser(email, password)
       .then((res) => {
-        alert("Sign-up Successful");
         const user = res.user;
-
-        setUser(user);
+        user.displayName = name;
+        updateUser({ displayName: name })
+          .then(() => {
+            setUser(user);
+            console.log(user);
+          })
+          .catch((err) => console.log(err));
         form.reset();
         navigate("/courses");
       })
@@ -79,7 +84,7 @@ const Register = () => {
             <Form.Group className="mb-3" controlId="formBasicName">
               <Form.Label>Your Name</Form.Label>
               <Form.Control
-                type="name"
+                type="text"
                 name="name"
                 placeholder="Enter Full Name"
                 required
@@ -105,15 +110,6 @@ const Register = () => {
                 required
               />
               <small className="text-danger">{error}</small>
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label>Your Photo URL</Form.Label>
-              <Form.Control
-                type="text"
-                name="name"
-                placeholder="any photo url"
-              />
             </Form.Group>
 
             <Button variant="primary" type="submit" className="d-block w-100">
