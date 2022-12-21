@@ -3,6 +3,7 @@ import { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { AuthContext } from "../../context/UserContext";
 
 const Login = () => {
@@ -17,6 +18,7 @@ const Login = () => {
       .then((res) => {
         const user = res.user;
         setUser(user);
+        toast.success(`Welcome ${user.displayName}`);
         navigate("/courses");
       })
       .catch((error) => {
@@ -30,6 +32,7 @@ const Login = () => {
       .then((res) => {
         const user = res.user;
         setUser(user);
+        toast.success(`Welcome ${user.displayName}`);
         navigate("/courses");
       })
       .catch((error) => {
@@ -47,7 +50,7 @@ const Login = () => {
       .then((res) => {
         const user = res.user;
         setUser(user);
-        alert("Successfull");
+        toast.success(`Welcome again!! ${user.displayName}`);
         console.log(user);
         form.reset();
         navigate("/courses");

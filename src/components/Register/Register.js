@@ -17,8 +17,9 @@ const Register = () => {
     googleSignIn()
       .then((res) => {
         const user = res.user;
-        toast.success(`Welcome ${user.displayName}`);
+
         setUser(user);
+        toast.success(`Welcome ${user.displayName}`);
         navigate("/courses");
       })
       .catch((error) => {
@@ -30,8 +31,8 @@ const Register = () => {
     githubSignIn()
       .then((res) => {
         const user = res.user;
-        toast.success(`Welcome ${user.displayName}`);
         setUser(user);
+        toast.success(`Welcome ${user.displayName}`);
         navigate("/courses");
       })
       .catch((error) => {
@@ -59,6 +60,7 @@ const Register = () => {
         updateUser({ displayName: name })
           .then(() => {
             setUser(user);
+            toast.success(`Thank you For Join ${user.displayName}`);
             console.log(user);
           })
           .catch((err) => console.log(err));
