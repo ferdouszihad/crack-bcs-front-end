@@ -8,6 +8,7 @@ import logo from "../../images/logo.png";
 import { SunIcon, MoonIcon } from "@heroicons/react/24/solid";
 import { useContext } from "react";
 import { AuthContext } from "../../context/UserContext";
+import { toast } from "react-toastify";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -17,7 +18,7 @@ const Header = () => {
   };
   const handleLogOut = () => {
     logOut()
-      .then(alert("Log-Out Successfull"))
+      .then(toast.success("User Log Out Successfully"))
       .catch((error) => {
         alert("LogOut Unsuccessfull");
       });

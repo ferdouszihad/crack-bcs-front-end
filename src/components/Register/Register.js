@@ -4,6 +4,7 @@ import { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link, Navigate, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { AuthContext } from "../../context/UserContext";
 
 const Register = () => {
@@ -16,6 +17,7 @@ const Register = () => {
     googleSignIn()
       .then((res) => {
         const user = res.user;
+        toast.success(`Welcome ${user.displayName}`);
         setUser(user);
         navigate("/courses");
       })
@@ -28,6 +30,7 @@ const Register = () => {
     githubSignIn()
       .then((res) => {
         const user = res.user;
+        toast.success(`Welcome ${user.displayName}`);
         setUser(user);
         navigate("/courses");
       })

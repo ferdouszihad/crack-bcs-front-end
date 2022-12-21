@@ -10,6 +10,7 @@ import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 import { useEffect } from "react";
 
@@ -41,6 +42,9 @@ const UserContext = ({ children }) => {
   const logOut = () => {
     return signOut(auth);
   };
+  const updateUser = (userInfo) => {
+    return updateProfile(auth.currentUser, userInfo);
+  };
 
   useEffect(() => {
     const unscubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -62,6 +66,7 @@ const UserContext = ({ children }) => {
     logOut,
     googleSignIn,
     githubSignIn,
+    updateUser,
   };
 
   return (
