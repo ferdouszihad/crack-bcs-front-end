@@ -65,21 +65,16 @@ const Header = () => {
             </div>
 
             <Nav className="text-light">
+              <Link to="/" className="text-light mx-3 text-decoration-none">
+                Home
+              </Link>
               <Link
                 to="/courses"
                 className="text-light mx-3 text-decoration-none"
               >
                 COURSES
               </Link>
-              <Link to="/faq" className=" text-light mx-3 text-decoration-none">
-                FAQ
-              </Link>
-              <Link
-                to="/blog"
-                className=" text-light mx-3 text-decoration-none"
-              >
-                blog
-              </Link>
+
               {user && user.uid ? (
                 <>
                   <Link
@@ -90,9 +85,20 @@ const Header = () => {
                   </Link>
                 </>
               ) : (
-                <Link to="/login" className=" text-light text-decoration-none">
-                  Login
-                </Link>
+                <>
+                  <Link
+                    to="/login"
+                    className=" text-light text-decoration-none mx-3"
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    to="/Register"
+                    className=" text-light text-decoration-none mx-3"
+                  >
+                    Register
+                  </Link>
+                </>
               )}
             </Nav>
           </Navbar.Collapse>
